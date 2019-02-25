@@ -1,0 +1,64 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "name": "config.ali",
+      "type": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.wechat.WxPayProperties",
+      "name": "config.wx",
+      "type": "org.xxpay.dubbo.service.channel.wechat.WxPayProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "name": "config.ali.alipay-public-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "name": "config.ali.app-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "defaultValue": 0,
+      "name": "config.ali.is-sandbox",
+      "type": "java.lang.Short"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "name": "config.ali.notify-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "name": "config.ali.return-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "name": "config.ali.rsa-private-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.alipay.AlipayConfig",
+      "defaultValue": "https:\/\/openapi.alipay.com\/gateway.do",
+      "name": "config.ali.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.wechat.WxPayProperties",
+      "name": "config.wx.cert-root-path",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.xxpay.dubbo.service.channel.wechat.WxPayProperties",
+      "name": "config.wx.notify-url",
+      "type": "java.lang.String"
+    }
+  ]
+}

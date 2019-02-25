@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xxpay.dal.dao.mapper.MchInfoMapper" >
+  <resultMap id="BaseResultMap" type="org.xxpay.dal.dao.model.MchInfo" >
+    <id column="MCHID" property="mchId" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="REQKEY" property="reqKey" jdbcType="VARCHAR" />
+    <result column="RESKEY" property="resKey" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="DECIMAL" />
+    <result column="CREATETIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="LEADEERNAME" jdbcType="VARCHAR" property="leaderName" />
+    <result column="LEADERPHONE" jdbcType="VARCHAR" property="leaderPhone" />
+    <result column="OFFICEADRESS" jdbcType="VARCHAR" property="officeAdress" />
+    <result column="EXTRA" jdbcType="VARCHAR" property="extra" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MCHID, NAME, TYPE, REQKEY, RESKEY, STATE, CREATETIME, UPDATETIME,LeaderName, LEADERPHONE,
+    OFFICEADRESS, EXTRA
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.xxpay.dal.dao.model.MchInfoExample" >
+      SELECT
+      <if test="distinct" >
+          distinct
+      </if>
+      <include refid="Base_Column_List" />
+      FROM
+      (
+      SELECT A.*, ROWNUM RN
+      FROM (
+      SELECT * FROM T_MCH_INFO
+
+      <if test="_parameter != null" >
+          <include refid="Example_Where_Clause" />
+      </if>
+
+      ) A
+    <if test="limit != null" >
+      <if test="offset != null" >
+        WHERE ROWNUM &lt;= ${limit}+${offset}
+      </if>
+    </if>
+    )
+    <if test="offset != null" >
+      WHERE RN &gt;= ${offset}
+    </if>
+
+
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_MCH_INFO
+    where MCHID = #{mchId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_MCH_INFO
+    where MCHID = #{mchId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.xxpay.dal.dao.model.MchInfoExample" >
+    delete from T_MCH_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.xxpay.dal.dao.model.MchInfo" >
+    <selectKey resultType="java.lang.String" keyProperty="mchId" order="BEFORE" >
+      select t_mch_info_S.nextval from dual
+    </selectKey>
+    insert into T_MCH_INFO (MCHID, NAME, TYPE,
+    REQKEY, RESKEY, STATE,
+    CREATETIME, UPDATETIME, LEADERNAME,
+    LEADERPHONE, OFFICEADRESS, EXTRA)
+    values (#{mchId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+    #{reqKey,jdbcType=VARCHAR}, #{resKey,jdbcType=VARCHAR}, #{state,jdbcType=DECIMAL},
+    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},#{leaderName,jdbcType=VARCHAR},
+    #{leaderPhone,jdbcType=VARCHAR}, #{officeAdress,jdbcType=VARCHAR}, #{extra,jdbcType=VARCHAR}
+    ))
+  </insert>
+  <insert id="insertSelective" parameterType="org.xxpay.dal.dao.model.MchInfo" >
+    <!--<selectKey resultType="java.lang.String" keyProperty="mchId" order="BEFORE" >-->
+      <!--select t_mch_info_S.nextval from dual-->
+    <!--</selectKey>-->
+    insert into T_MCH_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mchId != null" >
+        MCHID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="resKey != null" >
+        REQKEY,
+      </if>
+      <if test="reqKey != null" >
+        RESKEY,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+
+        CREATETIME,
+
+        UPDATETIME,
+      <if test="leaderName != null">
+        LEADERNAME,
+      </if>
+      <if test="leaderPhone != null">
+        LEADERPHONE,
+      </if>
+      <if test="officeAdress != null">
+        OFFICEADRESS,
+      </if>
+      <if test="extra != null">
+        EXTRA
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{mchId,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="reqKey != null" >
+        #{reqKey,jdbcType=VARCHAR},
+      </if>
+      <if test="resKey != null" >
+        #{resKey,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=DECIMAL},
+      </if>
+      sysdate,
+      sysdate,
+      <if test="leaderName != null">
+       #{leaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderPhone != null">
+       #{leaderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeAdress != null">
+       #{officeAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="extra != null">
+       #{extra,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.xxpay.dal.dao.model.MchInfoExample" resultType="java.lang.Integer" >
+    select count(*) from T_MCH_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_MCH_INFO
+    <set >
+      <if test="record.mchId != null" >
+        MCHID = #{record.mchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resKey != null" >
+        REQKEY = #{record.resKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reqKey != null" >
+        RESKEY = #{record.reqKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        CREATETIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATETIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.leaderName != null">
+        LEADERNAME = #{record.leaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leaderPhone != null">
+        LEADERPHONE = #{record.leaderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.officeAdress != null">
+        OFFICEADRESS = #{record.officeAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extra != null">
+        EXTRA = #{record.extra,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_MCH_INFO
+    set MCHID = #{record.mchId,jdbcType=VARCHAR},
+    NAME = #{record.name,jdbcType=VARCHAR},
+    TYPE = #{record.type,jdbcType=VARCHAR},
+    REQKEY = #{record.resKey,jdbcType=VARCHAR},
+    RESKEY = #{record.reqKey,jdbcType=VARCHAR},
+    STATE = #{record.state,jdbcType=DECIMAL},
+    CREATETIME = #{record.createTime,jdbcType=TIMESTAMP},
+    UPDATETIME = #{record.updateTime,jdbcType=TIMESTAMP},
+    LEADERNAME = #{leaderName,jdbcType=VARCHAR},
+    LEADERPHONE = #{leaderPhone,jdbcType=VARCHAR},
+    OFFICEADRESS = #{officeAdress,jdbcType=VARCHAR},
+    EXTRA = #{extra,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xxpay.dal.dao.model.MchInfo" >
+    update T_MCH_INFO
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="resKey != null" >
+        REQKEY = #{resKey,jdbcType=VARCHAR},
+      </if>
+      <if test="reqKey != null" >
+        RESKEY = #{reqKey,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+        CREATETIME = sysdate,
+        UPDATETIME = sysdate,
+      <if test="leaderName != null">
+        LEADERNAME = #{leaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderPhone != null">
+        LEADERPHONE = #{leaderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeAdress != null">
+        OFFICEADRESS = #{officeAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="extra != null">
+        EXTRA = #{extra,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MCHID = #{mchId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xxpay.dal.dao.model.MchInfo" >
+    update T_MCH_INFO
+    set NAME = #{name,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      REQKEY = #{resKey,jdbcType=VARCHAR},
+      RESKEY = #{reqKey,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=DECIMAL},
+      CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updateTime,jdbcType=TIMESTAMP},
+      LEADERNAME = #{leaderName,jdbcType=VARCHAR},
+      LEADERPHONE = #{leaderPhone,jdbcType=VARCHAR},
+      OFFICEADRESS = #{officeAdress,jdbcType=VARCHAR},
+      EXTRA = #{extra,jdbcType=VARCHAR}
+    where MCHID = #{mchId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,17 @@
+org\xxpay\mgr\controller\PayChannelController.class
+org\xxpay\mgr\service\TransOrderService.class
+org\xxpay\mgr\service\MonitorTask.class
+org\xxpay\mgr\controller\MchNotifyController.class
+org\xxpay\mgr\service\PayChannelService.class
+org\xxpay\mgr\controller\RefundOrderController.class
+org\xxpay\mgr\controller\MchInfoController.class
+org\xxpay\mgr\service\FileTask.class
+org\xxpay\mgr\service\MchInfoService.class
+org\xxpay\mgr\service\UserService.class
+org\xxpay\mgr\service\RefundOrderService.class
+org\xxpay\mgr\controller\PayOrderController.class
+org\xxpay\mgr\controller\TransOrderController.class
+org\xxpay\mgr\controller\UserController.class
+org\xxpay\mgr\service\PayOrderService.class
+org\xxpay\mgr\service\MchNotifyService.class
+org\xxpay\XxPayMgrApplication.class

@@ -1,0 +1,135 @@
+#test
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@10.43.10.109:1521/zhifudb
+    username: ffpay_test
+    password: ffpay_test
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    minIdle: 5
+    validationQuery: SELECT 1 FROM DUAL
+    initialSize: 5
+    maxWait: 60000
+    filters: stat,wall,log4j
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    testOnBorrow: false
+    testWhileIdle: true
+    minEvictableIdleTimeMillis: 300000
+    timeBetweenEvictionRunsMillis: 60000
+    testOnReturn: false
+    maxActive: 20
+  profiles:
+    active: test
+  freemarker:
+    charset: UTF-8
+    content-type: text/html
+    templateLoaderPath: classpath:/templates/
+    cache: false
+    expose-request-attributes: true
+    request-context-attribute: request
+    templateEncoding: UTF-8
+    expose-session-attributes: true
+    suffix: .ftl
+    check-template-location: true
+
+  mvc:
+    favicon:
+      enabled: false
+  mail:
+    host: smtp.163.com
+    username: lzz2234@163.com
+    password: lzz445000
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+
+server:
+  port: 8080
+ftp:
+  server:
+    ip: 10.43.112.150
+    pass: 123456
+    user: ftpuser
+
+mail:
+  from: lzz2234@163.com
+  to: 1355322629@qq.com
+
+weixinToken: http://124.47.34.12/wxbh/api/accesstoken.action?key=token
+touser: o0kX6jkWlQdD6uX8qPQrH_X3gH44
+template_id: FNFkpDmV0fPUnmTtAKZEF1DcGEtXjz3fUKOdgzz5p7s
+
+---
+## prod
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@10.43.10.109:1521/zhifudb
+    username: ffpay_test
+    password: ffpay_test
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    minIdle: 5
+    validationQuery: SELECT 1 FROM DUAL
+    initialSize: 5
+    maxWait: 60000
+    filters: stat,wall,log4j
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    testOnBorrow: false
+    testWhileIdle: true
+    minEvictableIdleTimeMillis: 300000
+    timeBetweenEvictionRunsMillis: 60000
+    testOnReturn: false
+    maxActive: 20
+  profiles: prod
+  freemarker:
+    charset: UTF-8
+    content-type: text/html
+    templateLoaderPath: classpath:/templates/
+    cache: false
+    expose-request-attributes: true
+    request-context-attribute: request
+    templateEncoding: UTF-8
+    expose-session-attributes: true
+    suffix: .ftl
+    check-template-location: true
+
+  mvc:
+    favicon:
+      enabled: false
+  mail:
+    host: smtp.163.com
+    username: lzz2234@163.com
+    password: lzz445000
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+mail:
+  from: lzz2234@163.com
+  to: 1355322629@qq.com
+
+server:
+  port: 8092
+ftp:
+  server:
+    ip: 10.43.112.150
+    pass: 123456
+    user: ftpuser
+weixinToken: http://124.47.34.12/wxbh/api/accesstoken.action?key=token
+touser: o0kX6jkWlQdD6uX8qPQrH_X3gH44
+template_id: FNFkpDmV0fPUnmTtAKZEF1DcGEtXjz3fUKOdgzz5p7s
